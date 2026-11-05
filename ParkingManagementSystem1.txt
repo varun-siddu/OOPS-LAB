@@ -1,0 +1,76 @@
+
+interface ParkingCharge {
+    double calculateCharge();
+    void displayParkingDetails();
+}
+
+class VehicleParking {
+    String vehicleNumber, vehicleType;
+    int parkingHours;
+
+    VehicleParking(String no, String type, int hours) {
+        vehicleNumber = no;
+        vehicleType = type;
+        parkingHours = hours;
+    }
+}
+
+class TwoWheeler extends VehicleParking implements ParkingCharge {
+    TwoWheeler(String no, int hours) {
+        super(no, "Two Wheeler", hours);
+    }
+
+    public double calculateCharge() {
+        return parkingHours <= 2 ? parkingHours * 20 :
+               40 + (parkingHours - 2) * 10;
+    }
+
+    public void displayParkingDetails() {
+        System.out.println("Vehicle Number: " + vehicleNumber);
+        System.out.println("Vehicle Type: " + vehicleType);
+        System.out.println("Parking Hours: " + parkingHours);
+        System.out.println("Total Charge: Rs. " + calculateCharge());
+    }
+}
+
+class FourWheeler extends VehicleParking implements ParkingCharge {
+    FourWheeler(String no, int hours) {
+        super(no, "Four Wheeler", hours);
+    }
+
+    public double calculateCharge() {
+        return parkingHours <= 2 ? parkingHours * 50 :
+               100 + (parkingHours - 2) * 30;
+    }
+
+    public void displayParkingDetails() {
+        System.out.println("Vehicle Number: " + vehicleNumber);
+        System.out.println("Vehicle Type: " + vehicleType);
+        System.out.println("Parking Hours: " + parkingHours);
+        System.out.println("Total Charge: Rs. " + calculateCharge());
+    }
+}
+
+public class ParkingManagementSystem {
+    public static void main(String[] args) {
+        ParkingCharge p;
+
+        p = new TwoWheeler("KA-01-AB-1234", 5);
+        p.displayParkingDetails();
+
+        p = new FourWheeler("KA-05-CD-5678", 4);
+        p.displayParkingDetails();
+    }
+------------------------------------------
+OUTPUT:
+
+Vehicle Number: KA-01-AB-1234
+Vehicle Type: Two Wheeler
+Parking Hours: 5
+Total Charge: Rs. 70.0
+
+Vehicle Number: KA-05-CD-5678
+Vehicle Type: Four Wheeler
+Parking Hours: 4
+Total Charge: Rs. 160.0
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
