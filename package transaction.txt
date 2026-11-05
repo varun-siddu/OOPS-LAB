@@ -1,0 +1,58 @@
+package transaction;
+
+public class Account {
+    public int accountNumber;
+    public double balance;
+
+    public Account(int accountNumber, double balance) {
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+    }
+
+    public void deposit(double amount) {
+        balance = balance + amount;
+        System.out.println("Deposited: Rs. " + amount);
+    }
+
+    public void withdraw(double amount) {
+        if (amount <= balance) {
+            balance = balance - amount;
+            System.out.println("Withdrawn: Rs. " + amount);
+        } else {
+            System.out.println("Insufficient Balance");
+        }
+    }
+}
+package reports;
+
+import transaction.Account;
+
+public class Report {
+
+    public void generateReport(Account a) {
+        System.out.println("Account Number: " + a.accountNumber);
+        System.out.println("Account Balance: Rs. " + a.balance);
+    }
+}
+import transaction.Account;
+import reports.Report;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Account a = new Account(101, 5000);
+
+        a.deposit(2000);
+        a.withdraw(1000);
+
+        Report r = new Report();
+        r.generateReport(a);
+    }
+}
+
+-------------------------------------
+OUTPUT:
+Deposited: Rs. 2000.0
+Withdrawn: Rs. 1000.0
+Account Number: 101
+Account Balance: Rs. 6000.0
